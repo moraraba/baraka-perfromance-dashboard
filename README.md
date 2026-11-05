@@ -16,30 +16,6 @@ An interactive Power BI report for the CFO of Baraka Manufacturing, a fictional 
 
 Sales grew 13.9% in two years, but profit grew only 5.7% because unit costs rose about 2% a year while prices stayed flat. See the [CFO note](docs/cfo-note.md) for findings and recommendations.
 
-## Repository contents
-
-| Path | What it holds |
-| --- | --- |
-| [`docs/cfo-note.md`](docs/cfo-note.md) | One-page note for the CFO: three findings, three recommendations |
-| [`docs/01-power-query.md`](docs/01-power-query.md) | Loading the four CSV files and setting data types |
-| [`docs/02-data-model.md`](docs/02-data-model.md) | Star schema, date table, segment table, relationships, hidden columns |
-| [`docs/03-measures.md`](docs/03-measures.md) | The DAX measure library, with expected totals |
-| [`docs/04-report-design.md`](docs/04-report-design.md) | Layout of the three report pages |
-| [`docs/05-business-questions.md`](docs/05-business-questions.md) | Answers to every business question, with figures |
-| [`power-query/`](power-query/) | M code for each query |
-| [`dax/`](dax/) | DAX for the calculated tables and all measures |
-| [`data/`](data/) | The four source CSV files |
-| [`screenshots/`](screenshots/) | One screenshot per report page |
-| `Baraka_Performance.pbip` + `.SemanticModel/` + `.Report/` | Power BI project: model, relationships and all measures, with three report pages |
-| `Baraka_Performance.pbix` | The Power BI file, saved from the project in Power BI Desktop |
-
-## Open the project
-
-1. Unzip the repo to `C:\Baraka\` so the CSVs sit in `C:\Baraka\data\`.
-2. Double-click `Baraka_Performance.pbip` (needs Power BI Desktop).
-3. If your CSVs are elsewhere: **Transform data → Edit parameters → DataFolder**, enter the folder path ending in `\`.
-4. Click **Refresh** on the Home ribbon. Total Sales should read KES 301,036,384.
-5. Build the visuals on the three pages ([04-report-design](docs/04-report-design.md)), then **File → Save as → Power BI file (.pbix)**.
 
 ## Data model
 
