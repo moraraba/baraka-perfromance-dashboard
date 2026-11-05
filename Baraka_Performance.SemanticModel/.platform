@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Baraka_Performance"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "76d14e47-ce97-4b11-ad47-7dd8d0139ede"
+  }
+}

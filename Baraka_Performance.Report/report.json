@@ -1,0 +1,40 @@
+{
+  "config": "{\"version\": \"5.43\"}",
+  "layoutOptimization": 0,
+  "resourcePackages": [],
+  "sections": [
+    {
+      "name": "ReportSection1",
+      "displayName": "Overview",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "ordinal": 0,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": []
+    },
+    {
+      "name": "ReportSection2",
+      "displayName": "Profitability",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "ordinal": 1,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": []
+    },
+    {
+      "name": "ReportSection3",
+      "displayName": "Markets and plan",
+      "displayOption": 1,
+      "width": 1280,
+      "height": 720,
+      "ordinal": 2,
+      "config": "{}",
+      "filters": "[]",
+      "visualContainers": []
+    }
+  ]
+}

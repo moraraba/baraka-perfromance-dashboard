@@ -1,0 +1,62 @@
+// Baraka measure library
+// Add each with New measure, in a _Measures table
+// Money: whole number, thousands separator. Percentages: %, 1 decimal.
+
+// ---- Core ----
+Total Sales = SUM ( 'baraka-sales'[sales_kes] )
+
+Gross Sales = SUM ( 'baraka-sales'[gross_sales_kes] )
+
+Total Discounts = SUM ( 'baraka-sales'[discounts_kes] )
+
+Discount % = DIVIDE ( [Total Discounts], [Gross Sales] )
+
+Total COGS = SUM ( 'baraka-sales'[cogs_kes] )
+
+Total Profit = SUM ( 'baraka-sales'[profit_kes] )
+
+Profit Margin = DIVIDE ( [Total Profit], [Total Sales] )
+
+Units Sold = SUM ( 'baraka-sales'[units_sold] )
+
+// ---- Time intelligence ----
+Sales Last Year = CALCULATE ( [Total Sales], SAMEPERIODLASTYEAR ( 'Date'[Date] ) )
+
+Sales Growth % = DIVIDE ( [Total Sales] - [Sales Last Year], [Sales Last Year] )
+
+Sales YTD = TOTALYTD ( [Total Sales], 'Date'[Date] )
+
+Profit Last Year = CALCULATE ( [Total Profit], SAMEPERIODLASTYEAR ( 'Date'[Date] ) )
+
+Profit Growth % = DIVIDE ( [Total Profit] - [Profit Last Year], [Profit Last Year] )
+
+Sales 2023 = CALCULATE ( [Total Sales], REMOVEFILTERS ( 'Date' ), 'Date'[Year] = 2023 )
+
+Sales Growth vs 2023 % = DIVIDE ( [Total Sales] - [Sales 2023], [Sales 2023] )
+
+// ---- Plan ----
+// Splits each segment's monthly target across markets and products by their
+// share of that segment's 2023 sales. With no market/product filter it equals
+// SUM ( 'baraka-targets'[target_sales_kes] ).
+Target Sales =
+SUMX (
+    VALUES ( Segment[segment] ),
+    VAR SegmentTarget = CALCULATE ( SUM ( 'baraka-targets'[target_sales_kes] ) )
+    VAR Share =
+        DIVIDE (
+            CALCULATE ( [Total Sales], REMOVEFILTERS ( 'Date' ), 'Date'[Year] = 2023 ),
+            CALCULATE (
+                [Total Sales],
+                REMOVEFILTERS ( 'Date' ), 'Date'[Year] = 2023,
+                REMOVEFILTERS ( 'baraka-markets' ),
+                REMOVEFILTERS ( 'baraka-products' )
+            )
+        )
+    RETURN SegmentTarget * Share
+)
+
+Variance to Target = [Total Sales] - [Target Sales]
+
+Variance to Target % = DIVIDE ( [Variance to Target], [Target Sales] )
+
+Target YTD = TOTALYTD ( [Target Sales], 'Date'[Date] )
